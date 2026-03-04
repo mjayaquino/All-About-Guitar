@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All About Guitar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 3px solid #FF6B35;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #ddd;
+        }
+
+        .button-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background-color: #FF6B35;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .tab-btn:hover {
+            background-color: #E55A2B;
+        }
+
+        .tab-btn.active {
+            background-color: #004E89;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        h2 {
+            color: #FF6B35;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #FF6B35;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #004E89;
+            font-size: 1.3em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .definitions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tip-box {
+            background-color: white;
+            border-left: 4px solid #FF6B35;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .trivia-box {
+            background-color: white;
+            border-left: 4px solid #004E89;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .guide-box {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .guide-box ol {
+            margin-left: 20px;
+            color: #333;
+        }
+
+        .guide-box li {
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+
+        .chord-box {
+            background-color: white;
+            border: 1px solid #FF6B35;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .chord-name {
+            font-size: 1.8em;
+            color: #FF6B35;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .chord-diagram {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre;
+            text-align: left;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 3px solid #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                width: 100%;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .definitions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>🎸 All About Guitar</h1>
+        <p>Learn Everything About Guitars - Definitions, Tips, Trivia, Guides, and More</p>
+    </header>
+
+    <!-- NAVIGATION BUTTONS -->
+    <div class="button-container">
+        <button class="tab-btn active" onclick="showTab('definitions')">Definitions</button>
+        <button class="tab-btn" onclick="showTab('tips')">Tips</button>
+        <button class="tab-btn" onclick="showTab('trivia')">Trivia</button>
+        <button class="tab-btn" onclick="showTab('guides')">Guides</button>
+        <button class="tab-btn" onclick="showTab('chords')">Chords</button>
+        <button class="tab-btn" onclick="showTab('maintenance')">Maintenance</button>
+    </div>
+
+    <!-- DEFINITIONS SECTION -->
+    <section id="definitions" class="content active">
+        <h2>📖 Guitar Terminology & Definitions</h2>
+        <div class="definitions-grid">
+            <div class="card">
+                <h3>Chord</h3>
+                <p>A combination of three or more notes played simultaneously to create harmony. Chords are the foundation of most guitar music.</p>
+            </div>
+            <div class="card">
+                <h3>Fret</h3>
+                <p>The metal wires that run perpendicular to the strings on the fretboard. Each fret represents a semitone in pitch.</p>
+            </div>
+            <div class="card">
+                <h3>Strumming</h3>
+                <p>The technique of running a pick or fingers across multiple strings simultaneously. This creates rhythm and is essential for playing chords.</p>
+            </div>
+            <div class="card">
+                <h3>Tuning</h3>
+                <p>The process of adjusting string tension to match standard pitch. Standard tuning is E-A-D-G-B-e from lowest to highest string.</p>
+            </div>
+            <div class="card">
+                <h3>Barre Chord</h3>
+                <p>A chord where one finger presses multiple strings across the same fret. This is an advanced technique for playing more complex chords.</p>
+            </div>
+            <div class="card">
+                <h3>Capo</h3>
+                <p>A device that clamps across the guitar strings at a specific fret. It raises the pitch of all strings while maintaining fingering patterns.</p>
+            </div>
+            <div class="card">
+                <h3>Transpose</h3>
+                <p>Moving a song to a different key while keeping the same interval relationships. This is essential for matching different vocal ranges.</p>
+            </div>
+            <div class="card">
+                <h3>Arpeggio</h3>
+                <p>Playing the notes of a chord in sequence rather than all at once. This creates a flowing, harp-like effect.</p>
+            </div>
+            <div class="card">
+                <h3>Vibrato</h3>
+                <p>A technique where a string is varied slightly in pitch by moving the fretting finger back and forth. This adds expression and sustain.</p>
+            </div>
+            <div class="card">
+                <h3>Fingerstyle</h3>
+                <p>Playing by plucking strings with the fingers instead of a pick. This technique creates complex and beautiful textures.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPS SECTION -->
+    <section id="tips" class="content">
+        <h2>💡 Tips & Tricks for Learning Guitar</h2>
+        
+        <div class="tip-box">
+            <h3>1. Practice Consistently Every Day</h3>
+            <p>Practice 30 minutes daily instead of long sessions once a week. Consistency builds muscle memory faster than sporadic practice.</p>
+        </div>
+
+        <div class="tip-box">
+            <h3>2. Use a Metronome</h3>
+            <p>A metronome helps you develop accurate rhythm and timing. Start slow and gradually increase the tempo as you improve.</p>
+        </div>
+
+        <div class="tip-box">
+            <h3>3. Keep Your Nails Short</h3>
+            <p>Short nails on your fretting hand ensure clean notes and prevent string buzzing. This helps you play better.</p>
+        </div>
+
+        <div class="tip-box">
+            <h3>4. Maintain Proper Hand Position</h3>
+            <p>Keep your wrist straight and relaxed. Avoid tension which can cause injury and slow down your progress.</p>
+        </div>
+
+        <div class="tip-box">
+            <h3>5. Tune Your Guitar Regularly</h3>
+            <p>Always tune before playing. An out-of-tune guitar frustrates beginners and develops poor listening habits.</p>
+        </div>
+
+        <div class="tip-box">
+            <h3>6. Learn by Ear</h3>
+            <p>Try to identify melodies and chords by listening to songs. This improves your musical ear and makes you a better musician.</p>
+        </div>
+
+        <div class="tip-box">
+            <h3>7. Practice Chord Transitions</h3>
+            <p>Smooth chord transitions are important. Practice switching between chords slowly before speeding up.</p>
+        </div>
+
+        <div class="tip-box">
+            <h3>8. Play Songs You Love</h3>
+            <p>Learning songs you enjoy keeps you motivated. It's more fun to practice music you actually like.</p>
+        </div>
+    </section>
+
+    <!-- TRIVIA SECTION -->
+    <section id="trivia" class="content">
+        <h2>🎸 Guitar Trivia & Interesting Facts</h2>
+        
+        <div class="trivia-box">
+            <h3>📅 Standard Tuning Since 1500s</h3>
+            <p>The standard tuning (E-A-D-G-B-E) has been used since the 1500s! This makes it one of the oldest standardized musical conventions.</p>
+        </div>
+
+        <div class="trivia-box">
+            <h3>🔊 String Vibrations</h3>
+            <p>A guitar string vibrates about 100 times per second to produce a middle note. This creates the sound we hear.</p>
+        </div>
+
+        <div class="trivia-box">
+            <h3>⚡ First Electric Guitar (1931)</h3>
+            <p>The first electric guitar was created in 1931. This invention revolutionized music and led to the creation of rock and roll.</p>
+        </div>
+
+        <div class="trivia-box">
+            <h3>🎵 Steel-String Guitars</h3>
+            <p>Steel-string guitars were invented in the early 1900s to provide louder volume for country and folk music.</p>
+        </div>
+
+        <div class="trivia-box">
+            <h3>🏆 Jimi Hendrix Skills</h3>
+            <p>Jimi Hendrix could play guitar behind his head and even with his teeth! He was an incredibly innovative and creative guitarist.</p>
+        </div>
+
+        <div class="trivia-box">
+            <h3>🎼 Oldest Guitar</h3>
+            <p>The oldest surviving guitar dates back to 1581 and is preserved in a museum. Guitars have been around for hundreds of years!</p>
+        </div>
+
+        <div class="trivia-box">
+            <h3>🎸 Different String Types</h3>
+            <p>Classical guitars use nylon strings while acoustic guitars use steel strings. This affects the tone and style of music played.</p>
+        </div>
+
+        <div class="trivia-box">
+            <h3>📊 Number of Frets</h3>
+            <p>A typical guitar has 18-24 frets, but some specialized guitars have up to 36 frets for greater range and higher notes.</p>
+        </div>
+    </section>
+
+    <!-- GUIDES SECTION -->
+    <section id="guides" class="content">
+        <h2>📚 Learning Guides & How-To</h2>
+        
+        <div class="guide-box">
+            <h3>🎯 Beginner's 7-Day Challenge</h3>
+            <p>Start your guitar journey with this simple plan:</p>
+            <ol>
+                <li><strong>Days 1-2:</strong> Learn basic hand positioning and the Open D chord</li>
+                <li><strong>Days 3-4:</strong> Master the Open Am and Em chords</li>
+                <li><strong>Days 5-6:</strong> Practice transitioning between Am, Em, and D</li>
+                <li><strong>Days 7+:</strong> Combine all chords and play a simple song</li>
+            </ol>
+        </div>
+
+        <div class="guide-box">
+            <h3>🔧 How to Replace Guitar Strings</h3>
+            <p>Learn to replace your guitar strings like a pro:</p>
+            <ol>
+                <li>Loosen the tuning pegs until strings are slack</li>
+                <li>Remove the bridge pins and pull out the old strings</li>
+                <li>Clean the fretboard while strings are off</li>
+                <li>Insert new string through the bridge hole</li>
+                <li>Secure the string at the headstock and wind the tuning pegs</li>
+                <li>Stretch the new strings and tune to pitch</li>
+            </ol>
+        </div>
+
+        <div class="guide-box">
+            <h3>🎼 Reading Guitar Tablature (TAB)</h3>
+            <p>Tablature is a simple way to read guitar music. Each line represents a string, and numbers show which fret to play.</p>
+            <p><strong>Example:</strong> 0 = open string, 1 = first fret, 2 = second fret, and so on.</p>
+            <p>Numbers increase from left to right, showing the order to play the notes.</p>
+        </div>
+
+        <div class="guide-box">
+            <h3>🎸 Essential Guitar Scales</h3>
+            <p>Master these important scales:</p>
+            <ol>
+                <li><strong>Major Scale:</strong> The foundation of Western music</li>
+                <li><strong>Minor Scale:</strong> Great for blues and rock music</li>
+                <li><strong>Pentatonic Scale:</strong> Essential for improvisation and solos</li>
+                <li><strong>Blues Scale:</strong> Perfect for blues and rock solos</li>
+            </ol>
+        </div>
+
+        <div class="guide-box">
+            <h3>💪 Finger Strength Exercises</h3>
+            <p>Build strong fingers for better playing:</p>
+            <ol>
+                <li>One-finger fretting: Hold each string with one finger at a time</li>
+                <li>Chromatic runs: Play each fret on each string in order</li>
+                <li>Spider exercise: Walk your fingers up the fretboard</li>
+                <li>Chord transitions: Switch between chords quickly and smoothly</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- CHORDS SECTION -->
+    <section id="chords" class="content">
+        <h2>🎵 Essential Guitar Chords</h2>
+        
+        <div class="chord-box">
+            <div class="chord-name">E Major</div>
+            <div class="chord-diagram">e: 0
+B: 0
+G#: 1
+D#: 2
+A#: 2
+E: 0</div>
+            <p>Bright, ringing tone - One of the most common chords</p>
+        </div>
+
+        <div class="chord-box">
+            <div class="chord-name">A Major</div>
+            <div class="chord-diagram">e: 0
+B: 0
+G#: 2
+D#: 2
+A: 0
+E: ✕</div>
+            <p>Clear and bright sound - Very common in many songs</p>
+        </div>
+
+        <div class="chord-box">
+            <div class="chord-name">D Major</div>
+            <div class="chord-diagram">e: 2
+B: 3
+G: 2
+D: 0
+A: ✕
+E: ✕</div>
+            <p>Ringing and pleasant tone - Great for beginners</p>
+        </div>
+
+        <div class="chord-box">
+            <div class="chord-name">G Major</div>
+            <div class="chord-diagram">e: 3
+B: 0
+G: 0
+D: 0
+A: 2
+E: 3</div>
+            <p>Full and bright sound - Slightly harder but essential</p>
+        </div>
+
+        <div class="chord-box">
+            <div class="chord-name">A Minor</div>
+            <div class="chord-diagram">e: 0
+B: 1
+G: 2
+D: 2
+A: 0
+E: 0</div>
+            <p>Easiest chord to learn - Perfect for beginners</p>
+        </div>
+
+        <div class="chord-box">
+            <div class="chord-name">E Minor</div>
+            <div class="chord-diagram">e: 0
+B: 0
+G: 0
+D: 2
+A: 2
+E: 0</div>
+            <p>Very beginner-friendly - Dark melancholic sound</p>
+        </div>
+
+        <div class="chord-box">
+            <div class="chord-name">D Minor</div>
+            <div class="chord-diagram">e: 1
+B: 3
+G: 2
+D: 0
+A: ✕
+E: ✕</div>
+            <p>Dark moody sound - Great for sad or emotional songs</p>
+        </div>
+
+        <div class="chord-box">
+            <div class="chord-name">C Major</div>
+            <div class="chord-diagram">e: 0
+B: 1
+G: 0
+D: 2
+A: 3
+E: ✕</div>
+            <p>Essential foundational chord - Used in many songs</p>
+        </div>
+    </section>
+
+    <!-- MAINTENANCE SECTION -->
+    <section id="maintenance" class="content">
+        <h2>🔧 Guitar Care & Maintenance</h2>
+        
+        <div class="guide-box">
+            <h3>🧹 Cleaning Your Guitar</h3>
+            <p>Wipe down your guitar after each playing session with a soft, dry cloth to remove sweat and oils. Use guitar polish monthly and clean the fretboard quarterly.</p>
+        </div>
+
+        <div class="guide-box">
+            <h3>🎯 Taking Care of Frets</h3>
+            <p>Keep frets clean and polished. If frets become worn unevenly, professional leveling may be needed. Always use guitar-specific cleaners.</p>
+        </div>
+
+        <div class="guide-box">
+            <h3>🌡️ Humidity Control</h3>
+            <p>Store your guitar in a temperature-stable environment with moderate humidity (40-50%). Extreme humidity changes can crack wood and affect tone. Use a humidifier in dry climates.</p>
+        </div>
+
+        <div class="guide-box">
+            <h3>🔐 String Care & Replacement</h3>
+            <p>Replace strings every 3-6 months depending on how much you play. Clean strings by wiping them down after playing. Fresh strings improve tone and sustain.</p>
+        </div>
+
+        <div class="guide-box">
+            <h3>🛡️ Proper Storage & Protection</h3>
+            <p>Always use a guitar case when transporting your guitar. Store it vertically on a stand or in a case. Never leave your guitar in direct sunlight or near heat sources.</p>
+        </div>
+
+        <div class="guide-box">
+            <h3>🔍 Checking Electronics (Electric Guitars)</h3>
+            <p>Periodically check your pickups, controls, and wiring for proper function. If controls become scratchy, use electronic contact cleaner. Get professional servicing annually.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 All About Guitar | A comprehensive guide to learning guitar</p>
+        <p>Keep practicing and enjoy your guitar journey! 🎸</p>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show selected content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
